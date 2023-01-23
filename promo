@@ -1,0 +1,8 @@
+metric contains 4 pices of info
+
+Metrics contain 4 pieces of information:
+1. Metric name
+2. Value – most recent or current value of the metric
+3. Timestamp for the metric
+4. Dimensions – additional information about the metric
+node_filesystem_avail_bytes{fstype="vfat", mountpoint="/home"} 5000 4:30AM 12/1/22
