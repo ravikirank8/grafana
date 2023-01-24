@@ -94,3 +94,32 @@ systemctl daemon-reload
 systemctl start prometheus
 systemctl enable prometheus
 systemctl status prometheus
+
+
+
+Modify the /etc/prometheus/prometheus.yml file:
+
+
+vi /etc/prometheus/prometheus.yml
+
+
+Add below code under scrape_configs::
+
+
+  - job_name: "nodes"
+    static_configs:
+      - targets: ['node01:9100', 'node02:9100']
+
+
+Restart the process with below command:
+
+
+systemctl restart prometheus
+
+
+curl -u prometheus:secret-password http://node01:9100/metrics
+curl -u prometheus:secret-password http://node02:9100/metrics
+
+
+openssl req -new -newkey rsa:2048 -days 365 -nodes -x509 -keyout node_exporter.key -out node_exporter.crt -subj "/C=US/ST=California/L=Oakland/O=MyOrg/CN=localhost" -addext "subjectAltName = DNS:localhost"
+
